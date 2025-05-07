@@ -21,14 +21,9 @@ jobs:
 
       - name: Build solution
         run: msbuild BloodBagScanner.sln /p:Configuration=Release /p:Platform=x64
-
-      - name: List build output
-        run: |
-          dir BloodBagScanner\bin\x64\Release /s
-        shell: cmd
   
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: release-build
-          path: BloodBagScanner\bin\x64\Release
+          path: bin/x64/Release
