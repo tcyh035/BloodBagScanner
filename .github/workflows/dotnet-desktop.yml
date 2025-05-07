@@ -20,7 +20,7 @@ jobs:
         run: msbuild BloodBagScanner.sln /p:Configuration=Release /p:Platform=x64  # 编译项目，指定 Release 配置和 x64 平台
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v2  # 上传构建产物
+        uses: actions/upload-artifact@v3  # 上传构建产物
         with:
           name: release-build
           path: BloodBagScanner\bin\x64\Release    
