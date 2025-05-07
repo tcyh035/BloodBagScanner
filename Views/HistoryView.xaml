@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="BloodBagScanner.Views.HistoryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:s="https://github.com/canton7/Stylet"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             Background="White">
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- 顶部区域：提示+输入框+按钮 -->
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0 0 0 10" VerticalAlignment="Center">
+            <TextBlock Text="输入条码：" VerticalAlignment="Center" Margin="0 0 10 0"/>
+            <hc:TextBox Width="200" Height="30" FontSize="14" Text="{Binding Barcode}" Margin="0 0 10 0"/>
+            <Button Content="查询" Width="80" Height="30" Margin="0 0 10 0"
+                    Command="{s:Action Search}" />
+            <Button Content="显示全部" Width="100" Height="30"
+                    Command="{s:Action ShowAll}"  Margin="0 0 10 0" />
+            <hc:DatePicker SelectedDate="{Binding SelectedDate}" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        </StackPanel>
+
+        <!-- DataGrid -->
+        <DataGrid Grid.Row="1" ItemsSource="{Binding ScanRecords}"
+                  AutoGenerateColumns="False"
+                  HeadersVisibility="Column"
+                  CanUserResizeColumns="False"
+                  CanUserResizeRows="False"
+                  CanUserSortColumns="False"
+                  FontSize="14" 
+                  ColumnHeaderHeight="30"
+                  RowHeight="28"
+                  CanUserAddRows="False"
+                  Margin="0"
+                  IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="时间"  Binding="{Binding Timestamp}" Width="*"/>
+                <DataGridTextColumn Header="血袋码1" Binding="{Binding BagCode1}" Width="*"/>
+                <DataGridTextColumn Header="血袋码2" Binding="{Binding BagCode2}" Width="*"/>
+                <DataGridCheckBoxColumn Header="核对通过" Binding="{Binding IsMatch}" IsReadOnly="True" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

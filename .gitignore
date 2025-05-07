@@ -1,0 +1,47 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build results
+bin/
+obj/
+
+# NuGet packages
+*.nupkg
+packages/
+*.snupkg
+
+# Others
+*.log
+*.db
+*.sqlite
+*.sdf
+*.cache
+*.pidb
+*.pdb
+*.mdb
+
+# User-specific files
+*.userprefs
+
+# Backup & temp files
+*~ 
+*.tmp
+
+# ReSharper
+_ReSharper*/
+*.DotSettings.user
+
+# Rider
+.idea/
+
+# JetBrains Rider / VS Code
+*.iml
+.vscode/
+
+# Windows thumbnail cache
+Thumbs.db
+
+# git
+*.orig
