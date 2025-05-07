@@ -1,0 +1,26 @@
+name: .NET Framework Build
+
+on:
+  push:
+    branches:
+      - main  # 当 main 分支有推送时触发构建
+
+jobs:
+  build:
+    runs-on: windows-latest  # 使用 Windows 环境
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # 检出代码
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1.1  # 安装 MSBuild
+
+      - name: Build solution
+        run: msbuild BloodBagScanner.sln /p:Configuration=Release /p:Platform=x64  # 编译项目，指定 Release 配置和 x64 平台
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2  # 上传构建产物
+        with:
+          name: release-build
+          path: BloodBagScanner\bin\x64\Release    
