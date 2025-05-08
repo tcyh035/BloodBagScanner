@@ -10,7 +10,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Controls;
-using TextBox = System.Windows.Controls.TextBox;
 
 namespace BloodBagScanner.ViewModels
 {
