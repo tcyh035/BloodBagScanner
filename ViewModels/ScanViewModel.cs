@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Controls;
+using TextBox = System.Windows.Controls.TextBox;
 
 namespace BloodBagScanner.ViewModels
 {
@@ -31,11 +32,11 @@ namespace BloodBagScanner.ViewModels
 
         public void HandleEnter(string textBoxName)
         {
-            if (textBoxName == "BagCode1" && !string.IsNullOrEmpty(BagCode1) && BagCode1.Length >= 15)
+            if (textBoxName == "BagCode1" && !string.IsNullOrEmpty(BagCode1))
             {
                 _bagCode2TextBox?.Focus();
             }
-            else if (textBoxName == "BagCode2" && !string.IsNullOrEmpty(BagCode2) && BagCode2.Length >= 15)
+            else if (textBoxName == "BagCode2" && !string.IsNullOrEmpty(BagCode2))
             {
                 Verify();
             }

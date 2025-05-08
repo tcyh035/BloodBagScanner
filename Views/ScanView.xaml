@@ -33,7 +33,7 @@
                      FontSize="16" MaxLength="16"
                      Text="{Binding BagCode1, UpdateSourceTrigger=PropertyChanged}">
             <hc:TextBox.InputBindings>
-                <KeyBinding Key="Return" Command="{s:Action HandleEnter, BagCode1}"/>
+                <KeyBinding Key="Return" Command="{s:Action HandleEnter}" CommandParameter="BagCode1"/>
             </hc:TextBox.InputBindings>
         </hc:TextBox>
 
@@ -48,7 +48,7 @@
                      FontSize="16" MaxLength="16"
                      Text="{Binding BagCode2, UpdateSourceTrigger=PropertyChanged}">
             <hc:TextBox.InputBindings>
-                <KeyBinding Key="Return" Command="{s:Action HandleEnter, BagCode2}"/>
+                <KeyBinding Key="Return" Command="{s:Action HandleEnter}" CommandParameter="BagCode2"/>
             </hc:TextBox.InputBindings>
         </hc:TextBox>
 
