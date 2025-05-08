@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Controls;
 
 namespace BloodBagScanner.ViewModels
 {
@@ -19,11 +20,26 @@ namespace BloodBagScanner.ViewModels
             _db = db;
             DisplayName = "扫码";
         }
+
         private string _bagCode1;
         private string _bagCode2;
         private string _verificationResult;
+        private TextBox _bagCode1TextBox;
+        private TextBox _bagCode2TextBox;
 
         private readonly DatabaseService _db;
+
+        public void HandleEnter(string textBoxName)
+        {
+            if (textBoxName == "BagCode1" && !string.IsNullOrEmpty(BagCode1) && BagCode1.Length >= 15)
+            {
+                _bagCode2TextBox?.Focus();
+            }
+            else if (textBoxName == "BagCode2" && !string.IsNullOrEmpty(BagCode2) && BagCode2.Length >= 15)
+            {
+                Verify();
+            }
+        }
 
         public string BagCode1
         {
@@ -82,12 +98,6 @@ namespace BloodBagScanner.ViewModels
                 VerificationResult = isMatch ? "成功" : "失败";
             }
 
-                // BagCode1 和 BagCode2 必须以 '=' 开头，并且长度大于等于15
-
-
-                // 取前14位进行比较
-
-
             _db.InsertRecord(new ScanRecord
             {
                 BagCode1 = BagCode1,
@@ -102,6 +112,19 @@ namespace BloodBagScanner.ViewModels
             BagCode1 = string.Empty;
             BagCode2 = string.Empty;
             VerificationResult = string.Empty;
+            _bagCode1TextBox?.Focus();
+        }
+
+        protected override void OnViewLoaded()
+        {
+            base.OnViewLoaded();
+            var view = this.View as UserControl;
+            if (view != null)
+            {
+                _bagCode1TextBox = view.FindName("BagCode1TextBox") as TextBox;
+                _bagCode2TextBox = view.FindName("BagCode2TextBox") as TextBox;
+                _bagCode1TextBox?.Focus();
+            }
         }
     }
 }
